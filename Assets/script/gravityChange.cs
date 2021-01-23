@@ -22,7 +22,6 @@ public class gravityChange : MonoBehaviour
                 rb.gravityScale *= -1;
                 Rotate();
             }
-            print("da");
         }
     } 
     void Rotate()
