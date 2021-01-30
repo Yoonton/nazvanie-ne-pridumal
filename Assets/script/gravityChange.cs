@@ -8,20 +8,27 @@ public class gravityChange : MonoBehaviour
     private bool top;
     private PlayerController player;
     private bool triggerEnter = false;
+    private Vector2 gravity = Physics.gravity;
+    [SerializeField] int rl = 100;
     private void Start()
     {
         player = GetComponent<PlayerController>();
         rb = GetComponent<Rigidbody2D>();
     }
     private void Update()
-    {  
-        if(!(triggerEnter))
+    {        
+        if (!(triggerEnter))
         {
             if (Input.GetKeyDown(KeyCode.R))
             {
                 rb.gravityScale *= -1;
                 Rotate();
             }
+        }
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            Physics2D.gravity = Vector2.right * rl;
+            rl = rl * -1;
         }
     } 
     void Rotate()
@@ -37,7 +44,7 @@ public class gravityChange : MonoBehaviour
         player.facingRight = !player.facingRight;
         top = !top;
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
      {
         triggerEnter = true;
         rb.gravityScale *= -1;
