@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = Vector2.up * jumpForse;
         }
+
     }
     void Flip()
     {

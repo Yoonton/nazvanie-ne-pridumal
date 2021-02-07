@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class gravityChange : MonoBehaviour
 {
+    private bool left;
     private Rigidbody2D rb;
     private bool top;
     private PlayerController player;
     private bool triggerEnter = false;
-    private Vector2 gravity = Physics.gravity;
     [SerializeField] int rl = 100;
     private void Start()
     {
@@ -29,6 +29,7 @@ public class gravityChange : MonoBehaviour
         {
             Physics2D.gravity = Vector2.right * rl;
             rl = rl * -1;
+            RotateLR();
         }
     } 
     void Rotate()
@@ -53,5 +54,17 @@ public class gravityChange : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         triggerEnter = false;
+    }
+    void RotateLR()
+    {
+        if(left == false)
+        {
+            transform.eulerAngles = new Vector3(0, 0, 90);
+        }
+        else
+        {
+            transform.eulerAngles = new Vector3(0, 0, -90);
+        }
+        left = !left;
     }
 }
